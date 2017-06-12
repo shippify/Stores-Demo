@@ -74,6 +74,11 @@ If your IP / port (or domain) change between two executions of your container, y
 
 * **PS_HANDLE_DYNAMIC_DOMAIN**: Add specific configuration to handle dynamic domain *(default value: 0)*
 
+4. Delete the Install folder.
+
+5. Rename the admin folder.
+
+6. Your Dockerized Prestashop is ready. 
 ## License
 
 View [license information](https://www.prestashop.com/en/osl-license) for the software contained in this image.
