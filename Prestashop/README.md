@@ -29,12 +29,27 @@ This image is running with the latest Apache version in the [official PHP reposi
 For the database, you can use and link any SQL server related to MySQL.
 
 Currently if you do not have any MySQL server, the most simple way to run this container is:
+
+1. Clone this Repository
+
+2. Create the DB Container:
+
 ```
 $ docker run -ti --name some-mysql -e MYSQL_ROOT_PASSWORD=admin -d mysql
+```
+3. Create Prestashop Modules container:
+
+```
 $ docker run -ti --name some-prestashop --link some-mysql -e DB_SERVER=some-mysql -p 8080:80 -d prestashop/prestashop
 ```
 
-A new shop will be built, ready to be installed. You can then use it by reaching `http://localhost:8080`. The MySQL server can be reached with the URL `some-mysql:3306`.
+3.1 Alternatively, if you want a volume for **module development testing**:
+
+```
+$ docker run -ti --name some-prestashop -v /c/Users/MY_USER/prestashop/modules:/var/www/html/modules --link some-mysql -e DB_SERVER=some-mysql -p 8080:80 -d prestashop/prestashop:PRESTASHOP_VERSION
+```
+
+A new shop will be built, ready to be installed. You can then use it by reaching `http://localhost:8080`. The MySQL server can be reached with the URL `some-mysql:3306`. Database name: `mysql`, Database login: `root`, Database password: `admin`, Tables prefix: `ps_`.
 However, if you want to customize the container execution, here are many available options:
 
 * **PS_DEV_MODE**: The constant `_PS_MODE_DEV_` will be set at `true` *(default value: 0)*
